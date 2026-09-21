@@ -1,0 +1,69 @@
+# ==========================================
+# Example Global Configuration File (.toml)
+# ==========================================
+
+# Global key-value pairs (Root level)
+app_name = "MyAwesomeApp"
+version = "2.4.1"
+release_date = 2026-09-22   # Local Date type
+is_production = false
+
+# ------------------------------------------
+# Tables (Used to group related properties)
+# ------------------------------------------
+[database]
+server = "192.168.1.50"
+ports = [ 8000, 8001, 8002 ] # Array of integers
+connection_max = 5000
+enabled = true
+
+# ------------------------------------------
+# Nested Tables (Sub-sections)
+# ------------------------------------------
+[database.credentials]
+user = "admin"
+password = "super_secure_password_123" # Strings require quotes
+
+# Alternative "Dotted Key" format (equivalent to creating a sub-table)
+database.timeouts.connection = 30
+database.timeouts.read = 60
+
+# ------------------------------------------
+# Data Types Breakdown
+# ------------------------------------------
+[data_types]
+# Strings
+basic_string = "Hello World"
+multiline_string = """
+This is a string that spans
+multiple lines in TOML.
+"""
+
+# Numbers
+integer = 42
+negative_integer = -17
+hexadecimal = 0xDEADBEEF     # Prefixed with 0x
+float = 3.14159
+scientific_notation = 5e+22
+
+# Booleans
+true_val = true
+false_val = false
+
+# Dates and Times
+timestamp_utc = 1979-05-27T07:32:00Z
+local_time = 07:32:00
+
+# Inline Table (Compact key-value grouping)
+coordinates = { x = 40.7128, y = -74.0060 }
+
+# ------------------------------------------
+# Array of Tables (Represents a list of objects)
+# ------------------------------------------
+[[products]]
+name = "Widget A"
+price = 9.99
+
+[[products]]
+name = "Gadget B"
+price = 24.99
