@@ -1,56 +1,49 @@
 import os
 import sys
+import argparse
 
 ## args = sys.args
 
 ## Examples config file paths
 EXAMPLE_CONFIG_TOML_PATH = 'config-examples/config.toml'
 EXAMPLE_CONFIG_ENV_PATH = 'config-examples/config.env'
+class Config_Cli():
+    def __init__(self, mode="combine", output_path="./"):
+        self.output_path = output_path
+        self.operation_mode = mode
+
+    def validate_config_schema(self, schema, config_file):
+        print("Validating config against the schema")
+
+    def combine_config_sources(self, configs_files):
+        print("Combining config files into a master config")
 
 
-def parse_config_file():
-    toml_hash = {}
+def main():
+    parser = argparse.ArgumentParser(
+            description="Combine multiple config files into a master file"
+        )
 
-    with open(EXAMPLE_CONFIG_TOML_PATH) as file:
-        for line in file:
-            # line = str(line.readline()) 
-            if line[0] == '#':
-                # do nothing as this line is a comment
-                pass
-            elif '=' in line:
-                #separate the key and values and store them in a hash
-                line_key_value_pair = line.split('=')
-                cleaned_key = line_key_value_pair[0].strip() 
-                cleaned_value = line_key_value_pair[1].strip() 
+    parser.add_argument(
+            "-o", "--output",
+            type=str,
+            default="./",
+            help="The path for the output file"
+        )
+    parser.add_argument(
+            "-m", "--mode",
+            type=str,
+            default="c",
+            help="The operation to do on the input files."
+        )
+    
+    args = parser.parse_args()
 
-                toml_hash[cleaned_key] =  cleaned_value 
-            
-    print(toml_hash)
+    print("this is where the code will go.")
+    print(f"Output path: {args.output}")
+    print(f"Operation mode: {args.mode}")
+    
+    
 
-def parse_env_config_file():
-    env_hash = {}
-
-    with open(EXAMPLE_CONFIG_ENV_PATH) as file:
-        for line in file:
-            # line = str(line.readline()) 
-            if line[0] == '#':
-                # do nothing as this line is a comment
-                pass
-            elif '=' in line:
-                #separate the key and values and store them in a hash
-                line_key_value_pair = line.split('=')
-                cleaned_key = line_key_value_pair[0].strip() 
-                # Clean up the "" in the string values 
-                cleaned_value = line_key_value_pair[1].strip() 
-                if cleaned_value[0] == '"' and cleaned_value[-1] == '"':
-                    unqouted_value = cleaned_value[1:-1]
-                    env_hash[cleaned_key] = unqouted_value 
-                else:
-                    env_hash[cleaned_key] =  cleaned_value 
-            
-    print(env_hash)
-
-
-
-
-parse_env_config_file()
+if __name__ == "__main__":
+    main()
