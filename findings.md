@@ -7,3 +7,34 @@
 
 
 - i will keep adding to this file each time i stumble upon some new idea or concept. 
+
+
+
+## Classes Approach
+    I had an idea about using classes for project and here kinda how it goes:
+So first of all, we have an a class with three funditons:
+`
+class Config_CLI:
+    def normalize():
+    
+    def sanitize():
+    
+    def read(): 
+`
+SO these three funcitons would do a part of the flow. Right now i understand that hte program should flow like this:
+
+- We have n config files
+- we read the config files and put them in individual data structures.
+- then we use the functions to sanitize the tokens.
+- then we use the fucnitons to normalize them.
+- and then we compare them and create the final project using the fixed rule for precedence.
+
+### Data Storage
+    when we read a file line by line, we can store those lines in a separate data strucure for each config file.
+ Then we have to sanitize the contents of each array. and we can use this structure for the list:
+`
+array=dict(index: list( tuple() , str))
+`
+So we have a hash map with the index of the line as the key and then we have the values set as a list of two elemnets:
+- tuple of all the tokens of var in each line
+- the value of the var as a str 

@@ -57,3 +57,6 @@ if there is even a single case where the given schema is not followed by the giv
 once all the cases are passed then the config file is valid as it matches the schema.
 
 this is my understanding of how i should appraoch htis project. i dont know if this is gonna work or not.
+
+
+## What:
